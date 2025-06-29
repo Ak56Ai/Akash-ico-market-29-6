@@ -20,16 +20,17 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     persistSession: true,
     autoRefreshToken: true,
   },
-  // Add performance optimizations
   db: {
     schema: 'public',
   },
   global: {
     headers: {
       'x-client-info': 'meico-app@1.0.0',
+      'apikey': supabaseAnonKey, // ✅ CRITICAL: include apikey
     },
   },
 });
+
 
 // Simple connection test - no logging to reduce console spam
 export const testConnection = async () => {
